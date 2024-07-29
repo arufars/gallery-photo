@@ -28,9 +28,12 @@ export const setAsFavorite = async (public_id: string, isFavorite: boolean) => {
     await cloudinary.uploader.add_tag("favorite", [public_id]);
   }
 
+  // Get the current timestamp in UTC
+  const currentTimestamp = new Date().toISOString();
+
   const updatedPost = await supabase
     .from("images")
-    .update({ favorite: !isFavorite })
+    .update({ favorite: !isFavorite, updated_at: currentTimestamp })
     .match({ public_id: public_id });
 
   console.log(updatedPost);

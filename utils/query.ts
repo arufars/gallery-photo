@@ -23,9 +23,7 @@ export const getImageCache = unstable_cache(
       throw new Error(response.error.message);
     }
 
-    return response.data
-      .map((image) => getImageDTO(image))
-      .sort((a, b) => b.created_at.getTime() - a.created_at.getTime());
+    return response.data.map((image) => getImageDTO(image));
   },
   ["images"],
   {
@@ -50,5 +48,6 @@ const getImageDTO = (image: ImageType) => {
     public_id: image.public_id,
     favorite: image.favorite,
     created_at: new Date(image.created_at),
+    updated_at: new Date(image.updated_at),
   };
 };

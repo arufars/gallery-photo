@@ -5,6 +5,7 @@ import React, { useState, useOptimistic } from "react";
 import { Icons } from "~/components/icons/icons";
 import { setAsFavorite } from "./_action";
 import { cn } from "~/lib/utils";
+import { ImageMenu } from "~/components/MenuImage";
 
 function LoadingSpinner() {
   return <div className="spinner">Loading...</div>; // Ganti ini dengan komponen spinner yang kamu inginkan
@@ -46,13 +47,15 @@ export default function CloudinaryImage({
         className={`image ${loading ? "loading" : "loaded"}`}
         src={src}
         alt={alt ? alt : "Image Created by User"}
+        // width="800"
+        // height="800"
         width="400"
-        height="300"
-        crop="fill"
-        sizes="100vw"
+        height="500"
+        // crop="fill"
+        // sizes="100vw"
         priority
       />
-      <div className="absolute top-2 right-2 cursor-pointer" onClick={handleFavoriteToggle}>
+      <div className="absolute top-2 left-2 cursor-pointer" onClick={handleFavoriteToggle}>
         {optimisticFavorite ? (
           <Icons.FullHeart className="w-6 h-6 text-red-500 hover:text-white" />
         ) : (
@@ -61,6 +64,7 @@ export default function CloudinaryImage({
           />
         )}
       </div>
+      <ImageMenu />
     </div>
   );
 }

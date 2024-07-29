@@ -6,6 +6,7 @@ export const imageSchema = z.object({
   public_id: z.string(),
   favorite: z.boolean(),
   created_at: z.date(),
+  updated_at: z.date(),
 });
 
 export type ImageType = z.infer<typeof imageSchema>;
